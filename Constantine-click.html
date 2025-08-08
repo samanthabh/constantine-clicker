@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constantine Click</title>
+    <style>
+      body {
+        background: rgba(255, 72, 216, 0.5);
+      }
+
+      .clicks {
+        padding: 20px;
+        color: rgb(255, 72, 216);
+        border: 3px white solid;
+        border-radius: 20px;
+        width: 120px;
+        position: absolute;
+        right: 200px;
+        top: 30px;
+        background: white;
+        font-family: Arial, Helvetica, sans-serif;
+        box-shadow: 5px 2px 10px rgba(157, 157, 157, 0.4);
+        font-weight: 700;
+      }
+
+      .button-connie {
+        width: 150px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .connie {
+        position: absolute;
+        width: 150px;
+        height: auto;
+        transition: all 2s ease-out;
+        pointer-events: none;
+      }
+
+      .connie.fade {
+        transform: translateY(-100px) scale(0.5);
+        opacity: 0;
+      }
+
+      button {
+        display: block;
+        margin: 0 auto;
+        width: 250px;
+        height: 250px;
+        background: white;
+        border-radius: 150px;
+        border: none;
+        font-size: 75px;
+        padding: 50px;
+        box-shadow: 5px 5px 10px rgba(116, 116, 116, 0.4);
+        margin-top: 250px;
+        transition: all 50ms;
+      }
+
+      button:hover {
+        box-shadow: 5px 5px 10px rgba(116, 116, 116, 0.6);
+        cursor: pointer;
+        scale: 1.01;
+      }
+
+      button:active {
+        transform: translateY(2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clicks">My clicks: 0</div>
+    <button><img src="connie.png" class="button-connie" /></button>
+    <script>
+      let clickCount = 0;
+
+      function octopus() {
+        let clicks = document.querySelector(".clicks");
+        let audio = new Audio("ttsmaker-file-2025-8-8-14-3-24.mp3");
+
+        let octopusEmoji = document.createElement("img");
+        octopusEmoji.className = "connie";
+        octopusEmoji.src = "connie.png";
+
+        let x = Math.random() * (window.innerWidth - 100);
+        let y = Math.random() * (window.innerHeight * 0.6);
+
+        octopusEmoji.style.left = x + "px";
+        octopusEmoji.style.top = y + "px";
+
+        document.body.appendChild(octopusEmoji);
+
+        setTimeout(() => {
+          octopusEmoji.classList.add("fade");
+        }, 10);
+
+        setTimeout(() => {
+          octopusEmoji.remove();
+        }, 2000);
+
+        clickCount++;
+        clicks.textContent = `My clicks: ${clickCount}`;
+
+        audio.play();
+      }
+
+      let button = document.querySelector("button");
+      button.addEventListener("click", octopus);
+    </script>
+  </body>
+</html>
